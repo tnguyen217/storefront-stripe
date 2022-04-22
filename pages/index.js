@@ -27,7 +27,7 @@ export default function Home(props) {
         <title>StoreFront</title>
       </Head>
 
-      <PageTitle title='StoreFront' tagline="product specials"/>
+      <PageTitle title='Plushie' tagline="New Products"/>
 
       <main>
           {products.map(product=><ProductCard key={product.uid} product={product} />)}

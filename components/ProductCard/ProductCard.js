@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image'
-import {productCard, price, name, description} from './styles.module.scss'
+import {productCard, productImage, price, name, description} from './styles.module.scss'
 
 
 // const myLoader = ({ src, width, quality }) => {
@@ -16,8 +16,9 @@ function ProductCard ({children, product, ...props})  {
            <Image 
             src={imageUrl}
             alt={productName}
-            width="280"
-            height="500"
+            width="380"
+            height="340"
+            className={productImage}
             />
 
          </header>
