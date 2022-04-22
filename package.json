@@ -10,14 +10,16 @@
   },
   "dependencies": {
     "js": "^0.1.0",
-    "next": "^12.1.4",
     "nextjs": "^0.0.3",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "sass": "^1.49.11"
   },
   "devDependencies": {
+    "@stripe/stripe-js": "^1.28.0",
     "eslint": "8.12.0",
-    "eslint-config-next": "12.1.4"
+    "eslint-config-next": "12.1.4",
+    "next": "^12.1.5",
+    "stripe": "^8.219.0"
   }
 }
