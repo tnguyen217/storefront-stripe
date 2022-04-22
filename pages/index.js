@@ -1,46 +1,44 @@
 import { useEffect, useState } from "react"
 
 import PageTitle from "../components/PageTitle/PageTitle"
-import {Button} from '../components/Button'
-import {User} from "../components/User"
+import ProductCard from "../components/ProductCard/ProductCard"
 
+// https://storefront-7e0ce-default-rtdb.firebaseio.com/products.json
 
-export default function Home() {
+/*
+  SSG Static Site Generation
+  data + compile ======> HTML + CSS ---------> egde/CDN
+*/ 
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [userData, setUserData] = useState([])
+export default function Home(props) {
 
-  useEffect(()=>{
-    async function loadExternalDataCRAWay(){
-      const res = await fetch(`https://jsonplaceholder.typicode.com/users`)
-      const data = await res.json()
-      setUserData(data)
-
-    }
-    loadExternalDataCRAWay()
-
-  },[])
-
+  const products = props.products
 
   return (
     <>
-      <PageTitle title='StoreFront' tagline="featured products"/>
-      <div 
-        style={{textAlign:"center"}}
-        onClick={()=>setIsLoading(!isLoading)}
-      >
-        <Button style={{margin:"2rem 0 0"}} >Get some data</Button>
-        {
-          isLoading && <p style={{padding:"1rem"}}>This is my output</p>
-        }
-      </div>
+      <PageTitle title='StoreFront' tagline="product specials"/>
+
       <main>
-        {
-          userData.map(({id, name, email, username}) => <User key={id} name={name} email={email} username={username} />)
-
-        }
-
+          {products.map(product=><ProductCard key={product.uid} product={product} />)}
       </main>
     </>
   )
+}
+
+
+/*
+  getStaticProps ============> Server node.js
+*/ 
+export async function getStaticProps(){
+
+  const res = await fetch('https://storefront-7e0ce-default-rtdb.firebaseio.com/products.json')
+  const productData = await res.json()
+  const products = Object.values(productData)
+
+  return {
+    props: {
+      products
+    }
+    
+  }
 }
