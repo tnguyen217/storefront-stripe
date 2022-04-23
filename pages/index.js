@@ -40,6 +40,7 @@ export default function Home(props) {
 /*
   getStaticProps ============> Server node.js
 */ 
+
 export async function getStaticProps(){
 
   const res = await fetch('https://storefront-7e0ce-default-rtdb.firebaseio.com/products.json')
@@ -50,6 +51,5 @@ export async function getStaticProps(){
     props: {
       products
     }
-    
   }
 }
